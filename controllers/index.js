@@ -11,17 +11,11 @@ controller.updateGet = (req, res) => {
 }
 
 controller.updatePost = (req, res) => {
-	const ref = req.body.ref;
+	execFile("sh",[`${process.env.PATHEXEC}/exec.sh`], (err, stdout, stderr) => {
+		if (err) return res.status(400).json({})
 
-	if(ref) {
-		execFile("sh",[`${process.env.PATHEXEC}/exec.sh`], (err, stdout, stderr) => {
-			if (err) return res.status(400).json({})
-	
-			res.status(200).json({});
-		})
-	}else{
-		res.status(400).json({message: "Not supported"})
-	}
+		res.status(200).json({});
+	})
 }
 
 module.exports = controller;
