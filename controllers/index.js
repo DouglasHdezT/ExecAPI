@@ -4,16 +4,24 @@ const controller = {};
 
 controller.updateGet = (req, res) => {
 	execFile("sh",[`${process.env.PATHEXEC}/exec.sh`], (err, stdout, stderr) => {
-		if (err) return res.status(400).json({message: `Error executing file: ${stderr}`})
+		if (err) return res.status(400).json({message: `Error executing file`})
 
-		res.status(200).json({message: stdout});
+		res.status(200).json({message: "Up to date!"});
 	})
 }
 
 controller.updatePost = (req, res) => {
-	console.log(req.body.action);
+	const ref = req.body.ref;
+
+	if(ref) {
+		execFile("sh",[`${process.env.PATHEXEC}/exec.sh`], (err, stdout, stderr) => {
+			if (err) return res.status(400).json({})
 	
-	res.status(200).json({});
+			res.status(200).json({});
+		})
+	}else{
+		res.status(400).json({message: "Not supported"})
+	}
 }
 
 module.exports = controller;
