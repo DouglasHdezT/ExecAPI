@@ -1,6 +1,9 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotEnv = require('dotenv');
+
+dotEnv.config();
 
 var indexRouter = require('./routes/index');
 
