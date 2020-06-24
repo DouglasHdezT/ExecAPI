@@ -1,3 +1,6 @@
+#My ignored files
+execFiles/exec.sh
+
 # Logs
 logs
 *.log
