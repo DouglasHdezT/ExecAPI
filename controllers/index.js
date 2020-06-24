@@ -3,7 +3,7 @@ const { execFile } = require("child_process");
 const controller = {};
 
 controller.updateGet = (req, res) => {
-	execFile("sh ../execFiles/exec.sh", (err, stdout, stderr) => {
+	execFile("sh",["../execFiles/exec.sh"], (err, stdout, stderr) => {
 		if (err) return res.status(400).json({message: `Error executing file: ${err}`})
 
 		res.status(200).json({message: stdout});
